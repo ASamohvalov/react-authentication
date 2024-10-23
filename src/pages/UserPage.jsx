@@ -3,10 +3,12 @@ import me from "../api/me";
 import { useEffect, useState } from "react";
 import Header from "../components/header/Header";
 import deleteAccount from "../api/deleteAccount";
+import EditProfile from "../components/EditProfile";
 
 const UserPage = () => {
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
+    const [editProfile, setEditProfile] = useState(false);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -40,7 +42,10 @@ const UserPage = () => {
                 <p>Фамилия: {userData?.lastName}</p>
                 <p>Роли: {userData?.roles.join(', ')}</p>
 
-                <button className="btn btn-danger" onClick={handleDeleteProfile}>delete your profile</button>
+                <button className="btn btn-danger m-3" onClick={handleDeleteProfile}>delete your profile</button>
+                <br />
+                <button className="btn btn-primary m-3" onClick={() => setEditProfile(!editProfile)}>edit profile</button>
+                { editProfile && <EditProfile /> }
             </div>
         </>
     );
