@@ -1,8 +1,9 @@
 import { useState } from "react";
-import register from "../api/auth/register";
+import register from "../../api/auth/register";
 import './auth.css';
 import { useNavigate } from "react-router-dom";
-import Header from "../components/header/Header";
+import Header from "../../components/header/Header";
+import Loading from "../../components/Loading";
 
 const RegisterPage = () => {
     const [firstName, setFirstName] = useState('');
@@ -10,12 +11,15 @@ const RegisterPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
+            setLoading(true);
             const response = await register(username, password, firstName, lastName);
             navigate('/login', { state: { message: response } });
         } catch (error) {
@@ -25,6 +29,8 @@ const RegisterPage = () => {
             } else {
                 console.error(error);
             }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -34,6 +40,8 @@ const RegisterPage = () => {
             <div style={{ marginLeft: "auto", marginRight: "auto", width: "500px" }}>
                 <form onSubmit={handleSubmit}>
                     <div className="text-center fs-1">register</div>
+
+                    {loading && <Loading />}
                     <input type="text" className="form-control m-2" placeholder="first name"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}

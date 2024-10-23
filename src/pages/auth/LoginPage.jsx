@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import login from "../api/auth/login";
-import Header from "../components/header/Header";
-import Loading from "../components/Loading";
+import login from "../../api/auth/login";
+import Header from "../../components/header/Header";
+import Loading from "../../components/Loading";
 
 const LoginPage = () => {
     const location = useLocation();
@@ -13,7 +13,6 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +23,9 @@ const LoginPage = () => {
             navigate('/');
         } catch (error) {
             if (error.response.status === 401) {
-                setErrorMessage(error.response.data);
+                document.getElementById('error-message').textContent = error.response.data;
+                document.getElementById('username-input').classList.add('is-invalid')
+                document.getElementById('password-input').classList.add('is-invalid')
             } else {
                 console.error(error);
             }
@@ -41,7 +42,7 @@ const LoginPage = () => {
                     <div className="text-center fs-1">login</div>
 
                     <div className="text-success text-center">{message}</div>
-                    <div className="text-danger text-center">{errorMessage}</div>
+                    <div className="text-danger text-center" id="error-message"></div>
 
                     {loading && <Loading />}
                     <input type="text" className="form-control m-2" placeholder="username"
@@ -53,6 +54,7 @@ const LoginPage = () => {
                     <input type="password" className="form-control m-2" placeholder="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        id="password-input"
                     />
 
                     <button className="btn btn-dark w-100 m-2" type="submit"

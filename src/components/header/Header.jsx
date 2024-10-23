@@ -8,7 +8,6 @@ const Header = () => {
         const checkAuth = async () => {
             const result = await isAuthenticated();
             setAuth(result); 
-            console.log(result);
         };
         checkAuth();
     }, []);
