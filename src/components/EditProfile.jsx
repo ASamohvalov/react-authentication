@@ -35,7 +35,7 @@ const EditProfile = () => {
     return (
         <form className="bg-light" onSubmit={handleSubmit}>
             <div className="m-2">
-                <label htmlFor="firstNameInput">enter your new ffndfngdmf first name</label>
+                <label htmlFor="firstNameInput">enter your new first name</label>
                 <input type="text" className="form-control" id="firstNameInput"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
