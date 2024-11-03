@@ -39,7 +39,7 @@ const LoginPage = () => {
             <Header />
             <div style={{ marginLeft: "auto", marginRight: "auto", width: "500px" }}>
                 <form onSubmit={handleSubmit}>
-                    <div className="text-center fs-1">login</div>
+                    <div className="text-center fs-1">loginnnnnnnnnnnnnnnnnnnnnnnnnnnnnn</div>
 
                     <div className="text-success text-center">{message}</div>
                     <div className="text-danger text-center" id="error-message"></div>
