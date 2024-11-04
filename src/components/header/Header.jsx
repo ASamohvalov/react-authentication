@@ -7,7 +7,7 @@ const Header = () => {
     useEffect(() => {
         const checkAuth = async () => {
             const result = await isAuthenticated();
-            setAuth(result); 
+            setAuth(result);
         };
         checkAuth();
     }, []);
@@ -23,6 +23,9 @@ const Header = () => {
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/logout">logout</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/users">users</a>
                             </li>
                         </>
                     ) : (

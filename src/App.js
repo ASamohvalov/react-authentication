@@ -4,6 +4,7 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import UserPage from './pages/UserPage';
 import Logout from './pages/Logout';
+import UsersPage from './pages/main/UsersPage';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/logout' element={<Logout />} />
+      
+        <Route path='/users' element={<UsersPage />} />
       </Routes>
     </BrowserRouter>
   );
